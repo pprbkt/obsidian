@@ -31,16 +31,6 @@ git clone https://github.com/paperbukit/obsidian.git
 
 ---
 
-## Why Obsidian
-
-- **Local-first** — notes are stored as plain files, not locked in a proprietary cloud
-- **Plain Markdown** — future-proof, portable, and version-controllable via Git
-- **Bi-directional linking** — build a connected graph of knowledge over time
-- **Extensible** — a rich plugin ecosystem to fit any workflow
-- **Fast** — performs well even at scale
-
----
-
 ## Notes
 
 This vault is personal and opinionated in structure. Notes are written for my own understanding first — clarity and recall over presentation. Content is added and revised continuously.
