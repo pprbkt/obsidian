@@ -1,770 +1,739 @@
-# Requirements Engineering
-
-**Requirements engineering (RE)** is the process of establishing the services a customer requires from a system and the constraints under which it operates and is developed.
-
-- System requirements are descriptions of system services and constraints generated during the RE process
-
-## What is a Requirement?
-
-- Ranges from a high-level abstract statement of a service or system constraint to a detailed mathematical functional specification
-- Serves a dual function:
-  - Basis for a **bid for a contract** — must be open to interpretation
-  - Basis for the **contract itself** — must be defined in detail
-  - Both may be called requirements
-
-### Requirements Abstraction (Davis)
-
-- "If a company wishes to let a contract for a large software development project, it must define its needs in a sufficiently abstract way that a solution is not pre-defined"
-- Requirements must allow several contractors to bid, offering different ways of meeting needs
-- After contract award, the contractor writes a detailed system definition for client validation
-- Both documents may be called the requirements document
-
-## Types of Requirement
-
-- **User requirements** — natural language + diagrams of services and operational constraints; written for customers
-- **System requirements** — structured document with detailed descriptions of functions, services, and operational constraints; defines what should be implemented; may be part of a contract between client and contractor
-
-### Readers of Different Requirement Specifications
-
-- User requirements: read by end-users, managers, customers (non-technical)
-- System requirements: read by developers, testers, project managers (technical)
-
-## System Stakeholders
-
-Any person or organisation affected by the system who has a legitimate interest:
-
-- **End users**
-- **System managers**
-- **System owners**
-- **External stakeholders**
-
-### Stakeholders in the Mentcare System
-
-- Patients whose information is recorded in the system
-- Doctors responsible for assessing and treating patients
-- Nurses who coordinate consultations and administer treatments
-- Medical receptionists who manage appointments
-- IT staff responsible for installing and maintaining the system
-- Medical ethics manager who ensures the system meets ethical guidelines
-- Health care managers who obtain management information
-- Medical records staff who ensure information is maintained, preserved, and record-keeping procedures are implemented
-
-## Agile Methods and Requirements
-
-- Producing detailed system requirements is seen as a waste of time — requirements change too quickly
-- The requirements document is always out of date
-- Agile uses **incremental requirements engineering** and expresses requirements as **user stories**
-- Practical for business systems; problematic for systems requiring pre-delivery analysis (critical systems) or systems developed by several teams
-
-## Functional and Non-functional Requirements
-
-### Functional Requirements
-
-- Statements of services the system should provide
-- How the system should react to particular inputs
-- How the system should behave in particular situations
-- May state what the system should **not** do
-- Depend on the type of software, expected users, and type of system
-- Functional **user** requirements may be high-level statements
-- Functional **system** requirements should describe services in detail
-
-### Mentcare System: Functional Requirements Example
-
-- A user shall be able to **search the appointments lists** for all clinics
-- The system shall **generate each day, for each clinic**, a list of patients expected to attend appointments that day
-- Each staff member shall be **uniquely identified** by his or her 8-digit employee number
-
-### Requirements Imprecision
-
-- Problems arise when functional requirements are not precisely stated
-- Ambiguous requirements may be interpreted differently by developers and users
-- Example — the term **search** in requirement 1:
-  - **User intention** — search for a patient name across all appointments in all clinics
-  - **Developer interpretation** — search for a patient name in an individual clinic (user chooses clinic then searches)
-
-### Requirements Completeness and Consistency
-
-- In principle, requirements should be both complete and consistent
-- **Complete** — include descriptions of all facilities required
-- **Consistent** — no conflicts or contradictions in descriptions
-- In practice, system and environmental complexity makes a complete and consistent requirements document impossible
-
-### Non-functional Requirements
-
-- Define system properties and constraints (reliability, response time, storage requirements)
-- Constraints: I/O device capability, system representations
-- **Process requirements** may mandate a particular IDE, programming language, or development method
-- May be more critical than functional requirements — if unmet, the system may be useless
-- May affect the overall architecture rather than individual components (e.g. minimising communications between components for performance)
-- A single security requirement may generate multiple related functional requirements and restrict existing requirements
-
-### Domain Requirements
-
-- Constraints on the system from the domain of operation
-
-## Non-functional Requirements Classifications
-
-### Product Requirements
-
-- Specify the delivered product must behave in a particular way (execution speed, reliability)
-
-### Organisational Requirements
-
-- Consequence of organisational policies and procedures (process standards, implementation requirements)
-
-### External Requirements
-
-- Factors external to the system and its development process (interoperability, legislative requirements)
-
-### Examples from the Mentcare System
-
-| Type | Example |
-|---|---|
-| **Product** | The Mentcare system shall be available to all clinics during normal working hours (Mon–Fri, 0830–17.30). Downtime within normal working hours shall not exceed five seconds in any one day |
-| **Organisational** | Users of the Mentcare system shall authenticate themselves using their health authority identity card |
-| **External** | The system shall implement patient privacy provisions as set out in HStan-03-2006-priv |
-
-## Goals vs Verifiable Requirements
-
-- Non-functional requirements are difficult to state precisely; imprecise requirements are difficult to verify
-- **Goal** — a general intention of the user (e.g. ease of use)
-- **Verifiable non-functional requirement** — a statement using some measure that can be objectively tested
-- Goals are helpful to developers as they convey the intentions of system users
-
-### Usability Requirements Example
-
-| Type | Statement |
-|---|---|
-| **Goal** | The system should be easy to use by medical staff and organised so user errors are minimised |
-| **Testable NFR** | Medical staff shall use all system functions after 4 hours of training; after training, avg errors by experienced users ≤ 2 per hour of system use |
-
-## Metrics for Specifying Non-functional Requirements
-
-| Property | Measure |
-|---|---|
-| **Speed** | Processed transactions/second, user/event response time, screen refresh time |
-| **Size** | Mbytes, number of ROM chips |
-| **Ease of use** | Training time, number of help frames |
-| **Reliability** | Mean time to failure, probability of unavailability, rate of failure occurrence, availability |
-| **Robustness** | Time to restart after failure, % events causing failure, probability of data corruption on failure |
-| **Portability** | % target-dependent statements, number of target systems |
-
-## Requirements Engineering Processes
-
-- Vary by application domain, people involved, and organisation
-- Generic activities common to all processes:
-  - **Requirements elicitation**
-  - **Requirements analysis**
-  - **Requirements validation**
-  - **Requirements management**
-- RE is an iterative activity in which processes are interleaved — a spiral view
-
-## Requirements Elicitation
-
-- Technical staff work with customers to discover the application domain, services, and operational constraints
-- Involves end-users, managers, engineers, domain experts, trade unions — collectively called **stakeholders**
-
-### Stages of Elicitation
-
-1. **Requirements discovery** — interacting with stakeholders to discover requirements; domain requirements are also discovered
-2. **Requirements classification and organisation** — grouping related requirements into coherent clusters
-3. **Prioritisation and negotiation** — prioritising requirements and resolving conflicts
-4. **Requirements specification** — documenting requirements for the next spiral iteration
-
-### Problems of Requirements Elicitation
-
-- Stakeholders don't know what they really want
-- Stakeholders express requirements in their own terms
-- Different stakeholders may have conflicting requirements
-- Organisational and political factors may influence system requirements
-- Requirements change during analysis; new stakeholders emerge; business environment changes
-
-### Interviewing
-
-- Formal or informal interviews with stakeholders are part of most RE processes
-- **Closed interviews** — based on pre-determined list of questions
-- **Open interviews** — various issues explored with stakeholders
-
-#### Effective Interviewing
-
-- Be open-minded, avoid pre-conceived ideas about requirements, and listen to stakeholders
-- Prompt interviewees using:
-  - **Springboard question** — a starting question to begin discussion
-  - **Requirements proposal** — suggest a possible requirement for reaction
-  - **Prototype system** — work together on a prototype
-- Normally a mix of closed and open-ended interviewing
-
-#### Problems with Interviews
-
-- Application specialists use domain language that is hard for requirements engineers to understand
-- Interviews are not good for understanding domain requirements:
-  - Engineers cannot understand specific domain terminology
-  - Some domain knowledge is so familiar that people find it hard to articulate or think it isn't worth articulating
-
-### Ethnography
-
-- A social scientist spends considerable time observing and analysing how people actually work
-- People do not have to explain or articulate their work
-- Social and organisational factors of importance may be observed
-- Work is usually richer and more complex than simple system models suggest
-
-#### Scope of Ethnography
-
-- Requirements derived from how people actually work, not how process definitions suggest they ought to work
-- Requirements derived from cooperation and awareness of other peoples activities
-- Effective for understanding **existing processes** but cannot identify new features that should be added
-
-### Focused Ethnography
-
-- Developed in a project studying air traffic control
-- Combines ethnography with **prototyping**
-- Unanswered questions from prototype development focus the ethnographic analysis
-- Problem: ethnography studies existing practices that may have historical basis no longer relevant
-
-### Stories and Scenarios
-
-- Real-life examples of how a system can be used
-- Stakeholders can relate to them and comment on their situation
-
-#### Example: Photo Sharing in the Classroom (iLearn)
-
-- Jack is a primary school teacher in Ullapool, Scotland
-- He decides a class project focused around the fishing industry (history, development, economic impact)
-- Pupils gather reminiscences from relatives, use newspaper archives, collect old photographs
-- Pupils use an **iLearn wiki** to gather stories and **SCRAN** (history resources site) for archives/photos
-- Jack needs a **photo sharing site** so pupils can take and comment on each other's photos and upload scans
-- Emails a primary school teachers group; two teachers suggest **KidsTakePics** (a photo sharing site allowing teachers to moderate content)
-- KidsTakePics is not integrated with iLearn authentication, so Jack sets up teacher and class accounts
-- Uses iLearn setup service to add KidsTakePics to services seen by pupils; when they log in they can immediately upload photos
-
-#### Scenario Structure
-
-Scenarios are a structured form of user story that should include:
-
-- Description of the **starting situation**
-- Description of the **normal flow of events**
-- Description of **what can go wrong**
-- Information about **other concurrent activities**
-- Description of the **state when the scenario finishes**
-
-#### Example: Uploading Photos (iLearn / KidsTakePics)
-
-**Starting situation:**
-
-- User or group of users have digital photos saved on a tablet or laptop
-- They have successfully logged on to KidsTakePics
-
-**Normal flow:**
-
-- User chooses Upload Photos; prompted to select photos and project name
-- Option to input keywords for each photo
-- Uploaded photos named by combining username with local filename
-- System emails the project moderator to check new content
-- On-screen message confirms the action
-
-**What can go wrong:**
-
-- **No moderator** associated with the project — email generated to school administrator to nominate one; users informed of possible delay
-- **Duplicate filenames** — user asked to re-upload (overwrite), rename (auto-add number), or cancel
-
-**Other activities:**
-
-- Moderator may be logged on and approve photos as they are uploaded
-
-**System state on completion:**
-
-- User is logged on
-- Selected photos uploaded with status **awaiting moderation**
-- Photos visible to moderator and the uploading user
-
-## Requirements Specification
-
-- Process of writing user and system requirements in a requirements document
-- **User requirements** — understandable by end-users and customers (non-technical background)
-- **System requirements** — more detailed, may include technical information
-- May be part of a contract — must be as complete as possible
-
-### Ways of Writing System Requirements
-
-| Notation | Description |
-|---|---|
-| **Natural language** | Numbered sentences in natural language; each expresses one requirement |
-| **Structured natural language** | Standard form or template with fields for each aspect of the requirement |
-| **Design description languages** | Programming-like language with abstract features (rarely used now, useful for interface specifications) |
-| **Graphical notations** | UML use case and sequence diagrams with text annotations |
-| **Mathematical specifications** | Based on finite-state machines or sets — unambiguous but most customers cannot check what it represents |
-
-### Requirements and Design
-
-- In principle, requirements state **what** the system should do; design describes **how**
-- In practice, requirements and design are inseparable:
-  - System architecture may be designed to structure the requirements
-  - System may inter-operate with other systems generating design requirements
-  - Use of specific architecture for non-functional requirements may be a domain requirement
-  - May be consequence of a regulatory requirement
-
-### Natural Language Specification
-
-- Requirements written as natural language sentences supplemented by diagrams and tables
-- Expressive, intuitive, and universal — understandable by users and customers
-
-#### Guidelines
-
-- Invent a standard format and use it for all requirements
-- Use language consistently — **shall** for mandatory, **should** for desirable
-- Use text highlighting to identify key parts
-- Avoid computer jargon
-- Include rationale explaining why the requirement is necessary
-
-#### Problems
-
-- **Lack of clarity** — precision is difficult without making the document hard to read
-- **Requirements confusion** — functional and non-functional tend to be mixed
-- **Requirements amalgamation** — several different requirements expressed together
-
-### Example Requirements for the Insulin Pump
-
-- **3.2** The system shall measure the blood sugar and deliver insulin, if required, every 10 minutes (rationale: blood sugar changes are slow; more frequent measurement unnecessary; less frequent could lead to high sugar levels)
-- **3.6** The system shall run a self-test routine every minute with conditions and actions defined in Table 1 (rationale: self-test can discover hardware/software problems and alert the user)
-
-### Structured Specifications
-
-- Limits writer freedom; requirements written in a standard way
-- Works well for embedded control systems; may be too rigid for business systems
-
-### Form-based Specifications
-
-Components of a form-based specification:
-
-- Definition of the **function or entity**
-- Description of **inputs** and where they come from
-- Description of **outputs** and where they go to
-- Information needed for the **computation** and other entities used
-- Description of the **action** to be taken
-- **Pre and post conditions** (if appropriate)
-- **Side effects** (if any)
-
-### Tabular Specification
-
-- Supplements natural language
-- Useful when defining multiple possible alternative courses of action
-- Example: insulin pump computes dose based on rate of change of blood sugar level
-
-Insulin pump computation table:
-
-| Condition | Action |
-|---|---|
-| Sugar level falling (r2 < r1) | CompDose = 0 |
-| Sugar level stable (r2 = r1) | CompDose = 0 |
-| Sugar level increasing, rate of increase decreasing ((r2 - r1) < (r1 - r0)) | CompDose = 0 |
-| Sugar level increasing, rate of increase stable or increasing ((r2 - r1) >= (r1 - r0)) | CompDose = round((r2 - r1) / 4); if rounded result = 0 then CompDose = MinimumDose |
-
-### Use Cases
-
-- UML-based scenarios
-- Identify **actors** in an interaction and describe the interaction itself
-- A set of use cases should describe all possible interactions with the system
-- High-level graphical model supplemented by more detailed tabular description
-- UML sequence diagrams add detail showing sequence of event processing
-
-## The Software Requirements Document
-
-- Official statement of what is required of system developers
-- Includes both user requirements definition and system requirements specification
-- **NOT a design document** — describes **what**, not **how**
-- Content varies by system type and development approach
-
-### Users of the Requirements Document
-
-- **Customers** — specify requirements and read them for validation
-- **Managers** — use to plan and schedule development
-- **System engineers** — use to understand what to build
-- **Test engineers** — use to develop test cases
-- **Maintenance engineers** — use to understand the system for changes
-
-### Requirements Document Variability
-
-- Information depends on type of system and development approach
-- Systems developed incrementally have less detail
-- IEEE standard exists for large systems engineering projects
-
-### Structure of a Requirements Document
-
-| Chapter | Description |
-|---|---|
-| **Preface** | Expected readership, version history, rationale for new versions, summary of changes |
-| **Introduction** | Need for the system, brief function description, how it works with other systems, alignment with business objectives |
-| **Glossary** | Technical terms used in the document |
-| **User requirements definition** | Services for the user, non-functional requirements described in understandable language, product and process standards |
-| **System architecture** | High-level overview, distribution of functions across modules, reused components highlighted |
-| **System requirements specification** | Functional and non-functional in detail; interfaces to other systems |
-| **System models** | Graphical models (object models, data-flow models, semantic data models) showing relationships between components |
-| **System evolution** | Fundamental assumptions, anticipated changes (hardware evolution, changing user needs), helps designers avoid constraining future changes |
-| **Appendices** | Detailed specific information — hardware descriptions (minimal/optimal config), database descriptions (logical organisation, data relationships) |
-| **Index** | Normal alphabetic index, index of diagrams, index of functions |
-
-## Requirements Validation
-
-- Concerned with demonstrating that requirements define the system the customer really wants
-- Requirements error costs are high — fixing after delivery may cost up to **100 times** the cost of fixing an implementation error
-
-### Requirements Checking
-
-- **Validity** — does the system provide the functions that best support the customer's needs?
-- **Consistency** — are there any requirements conflicts?
-- **Completeness** — are all functions required by the customer included?
-- **Realism** — can requirements be implemented given available budget and technology?
-- **Verifiability** — can the requirements be checked?
-
-### Validation Techniques
-
-- **Requirements reviews** — systematic manual analysis of the requirements
-- **Prototyping** — using an executable model to check requirements
-- **Test-case generation** — developing tests for requirements to check testability
-
-### Requirements Reviews
-
-- Regular reviews while requirements definition is being formulated
-- Both client and contractor staff involved
-- Reviews may be **formal** (with completed documents) or **informal**
-- Good communication between developers, customers, and users resolves problems early
-
-### Review Checks
-
-- **Verifiability** — is the requirement realistically testable?
-- **Comprehensibility** — is the requirement properly understood?
-- **Traceability** — is the origin of the requirement clearly stated?
-- **Adaptability** — can the requirement be changed without large impact on other requirements?
-
-## Requirements Change
-
-### Why Requirements Change
-
-- Business and technical environment always changes after installation:
-  - New hardware introduced
-  - Need to interface with other systems
-  - Business priorities change
-  - New legislation and regulations introduced
-- Customers and users are rarely the same people — conflicting requirements
-- Large systems have diverse user communities with different, often conflicting priorities — final requirements are inevitably a compromise
-
-### Requirements Evolution
-
-- Requirements evolve continuously as systems are developed and used
-- New requirements emerge during development and after deployment
-
-### Requirements Management
-
-- Process of managing changing requirements during RE and system development
-- Track individual requirements and maintain links between dependent requirements
-- Establish formal process for change proposals and link them to system requirements
-
-### Requirements Management Planning
-
-- **Requirements identification** — each requirement uniquely identified for cross-referencing
-- **Change management process** — activities that assess impact and cost of changes
-- **Traceability policies** — relationships between requirements and between requirements and system design
-- **Tool support** — from specialist requirements management systems to spreadsheets and databases
-
-### Requirements Change Management Process
-
-1. **Problem analysis and change specification**
-   - Problem or change proposal is analysed for validity
-   - Analysis fed back to requestor who may respond with more specific proposal or withdraw
-
-2. **Change analysis and costing**
-   - Effect of proposed change assessed using traceability information and knowledge of requirements
-   - Decision made whether to proceed
-
-3. **Change implementation**
-   - Requirements document, system design, and implementation modified
-   - Document should be organised so changes can be easily implemented
 
 ---
 
-# System Modeling
+## Functional and non-functional requirements
 
-**System modeling** is the process of developing abstract models of a system, each presenting a different view or perspective.
+- **Software system requirements** are mainly classified into:
+    - Functional requirements
+    - Non-functional requirements
 
-- Uses graphical notation, almost always based on **Unified Modeling Language (UML)**
-- Helps analysts understand system functionality
-- Models are used to communicate with customers
+### Functional Requirements
 
-## Existing and Planned System Models
+- Describe **what the system should do**.
+- Specify the **services or functions** the system must provide.
+- Define how the system should:
+    - React to particular inputs.
+    - Behave in different situations.
+    - Perform specific tasks.
+- Depend on:
+    - Type of software being developed.
+    - Expected users.
+    - Organization needs.
+- User-level functional requirements are usually high-level descriptions.
+- System-level functional requirements provide detailed descriptions of services.
+- Functional requirements should be:
+    - **Complete** – include all required services.
+    - **Consistent** – should not contain conflicting or contradictory requirements.
 
-- **Existing system models** — used during RE to clarify what the current system does; basis for discussing strengths and weaknesses
-- **New system models** — used to explain proposed requirements to stakeholders, discuss design proposals, and document for implementation
-- **Model-driven engineering** — generates complete or partial implementation from system models
+**Examples (Mentcare System):**
 
-## System Perspectives
+- A user shall be able to search appointment lists for all clinics.
+- The system shall generate a daily list of patients expected for appointments in each clinic.
+- Each staff member shall be uniquely identified by an **8-digit employee number**.
 
-- **External perspective** — models the context or environment of the system
-- **Interaction perspective** — models interactions between the system and its environment, or between system components
-- **Structural perspective** — models the organisation of a system or the structure of data processed
-- **Behavioral perspective** — models dynamic behaviour and how the system responds to events
+### Non-functional Requirements
 
-## UML Diagram Types
+- Describe **constraints or quality attributes** of the system rather than specific functions.
+- Define properties such as:
+    - Performance
+    - Reliability
+    - Security
+    - Availability
+    - Usability
+    - Response time
+- Usually apply to the **entire system** rather than individual features.
+- Often more critical than functional requirements because failure to meet them can make the system unusable.
+- May influence the overall system architecture.
+- A single non-functional requirement (such as security) can lead to additional functional requirements.
 
-| Diagram | Purpose |
-|---|---|
-| **Activity diagrams** | Show activities in a process or data processing |
-| **Use case diagrams** | Show interactions between a system and its environment |
-| **Sequence diagrams** | Show interactions between actors and the system and between components |
-| **Class diagrams** | Show object classes and associations between them |
-| **State diagrams** | Show how the system reacts to internal and external events |
+**Types of Non-functional Requirements**
 
-## Use of Graphical Models
+- **Product Requirements**
+    - Specify how the software should behave or perform.
+    - Examples:
+        - Execution speed
+        - Reliability
+        - Security
+        - Usability
+        - Memory usage
+    - Example:
+        - The Mentcare system shall be available during working hours (Mon–Fri, 08:30–17:30).
+        - Downtime during working hours shall not exceed **5 seconds per day**.
+- **Organizational Requirements**
+    - Derived from organization policies and procedures.
+    - Include development standards, operational procedures, or implementation constraints.
+    - Example:
+        - Users must authenticate using their health authority identity card.
+- **External Requirements**
+    - Arise from factors outside the system and development process.
+    - Include legal, regulatory, ethical, or interoperability requirements.
+    - Example:
+        - The system shall implement patient privacy provisions specified by applicable standards.
 
-- **Facilitate discussion** about existing or proposed systems — incomplete and incorrect models are OK as their role is to support discussion
-- **Document existing system** — accurate representation but need not be complete
-- **Generate system implementation** — models must be correct and complete
+### Difference between Functional and Non-functional Requirements
+
+- **Functional Requirements**
+    - Describe **what the system does**.
+    - Focus on services and behaviour.
+    - Example: Generate daily patient appointment lists.
+- **Non-functional Requirements**
+    - Describe **how well the system performs or the constraints under which it operates**.
+    - Focus on quality attributes and system-wide properties.
+    - Example: System downtime should not exceed 5 seconds per day.
+
+---
+
+## Requirements Engineering Processes
+
+- **Requirements Engineering (RE)** is the process of identifying, analyzing, documenting, and checking the services and constraints required for a software system.
+- The RE process is generally **iterative**, meaning its activities may be repeated and overlap until the requirements are finalized.
+- The final output is usually a **System Requirements Document**.
+
+### Main Activities of the Requirements Engineering Process
+
+- **Feasibility Study**
+    - Determines whether the proposed system is technically and financially feasible.
+    - Evaluates if the system will be useful for the business.
+    - Helps management decide whether to proceed with development.
+- **Requirements Elicitation and Analysis**
+    - Collects requirements from customers, users, and stakeholders.
+    - Studies the application domain and system constraints.
+    - Discovers required services, performance needs, and hardware/software limitations.
+    - Analyzes and resolves conflicts between different stakeholder requirements.
+- **Requirements Specification**
+    - Converts gathered requirements into a clear and organized document.
+    - Produces user requirements and system requirements in a standard format.
+    - Serves as a reference for developers and customers.
+- **Requirements Validation**
+    - Checks whether the documented requirements accurately represent customer needs.
+    - Ensures requirements are:
+        - Complete
+        - Consistent
+        - Correct
+        - Realistic
+        - Verifiable
+    - Identifies errors, omissions, and conflicts before development begins.
+- **Requirements Management (Requirements Change)**
+    - Handles changes to requirements during system development.
+    - Tracks, evaluates, and updates requirements as business needs evolve.
+    - Ensures modifications are properly documented and controlled.
+
+### Characteristics of the RE Process
+
+- Activities are **interleaved and iterative**, not strictly sequential.
+- Different projects may spend different amounts of time on each activity.
+- Requirements are gradually refined through multiple iterations.
+- The process may stop after gathering all user requirements or continue until detailed system requirements are completed.
+- Produces a well-defined **system requirements document** that guides software development.
+
+---
+
+## Requirements Elicitation
+
+- **Requirements elicitation** is the process of discovering, collecting, and understanding the requirements of a software system.
+- It is carried out after the initial feasibility study.
+- Software engineers work with customers, users, and stakeholders to understand:
+    - The application domain.
+    - Services the system should provide.
+    - Performance requirements.
+    - Hardware and software constraints.
+    - Business needs and expectations.
+
+### Main Activities
+
+- **Requirements Discovery and Understanding**
+    - Interact with stakeholders to gather their requirements.
+    - Identify domain requirements from users and existing documents.
+    - Understand what the stakeholders expect from the system.
+- **Requirements Classification and Organization**
+    - Organize the collected requirements into related groups.
+    - Group similar requirements into coherent categories.
+    - Often based on the system architecture or subsystems.
+- **Requirements Prioritization and Negotiation**
+    - Prioritize requirements based on importance and business value.
+    - Identify conflicts between stakeholder needs.
+    - Resolve disagreements through discussion and negotiation to reach a compromise.
+- **Requirements Documentation**
+    - Record the finalized requirements.
+    - Prepare formal or informal requirements documents.
+    - Feed the documented requirements into the next iteration of the requirements engineering process.
+
+### Difficulties in Requirements Elicitation
+
+- Stakeholders may not know exactly what they want and may only express general ideas.
+- They may find it difficult to clearly explain their needs or may request unrealistic features.
+- Stakeholders often describe requirements using domain-specific language that requirements engineers may not fully understand.
+- Different stakeholders may have conflicting requirements or express similar needs differently.
+- Political factors within an organization may influence requirements, with managers requesting features that increase their control or influence.
+- The business and economic environment can change during development, causing requirements to change over time.
+
+### Importance
+
+- Helps identify the actual needs of customers and users.
+- Forms the foundation for requirements specification and system design.
+- Reduces misunderstandings and conflicts early in the software development process.
+- Ensures that the developed system meets stakeholder expectations.
+
+---
+
+## Requirements Specification
+
+- **Requirements Specification** is the process of writing down the **user requirements** and **system requirements** in a requirements document.
+- It converts gathered requirements into a clear and structured form for development.
+- System requirements are expanded versions of user requirements and provide more detail about how the required services should be delivered.
+- The requirements document may form part of the development contract, so it should be as complete and accurate as possible.
+
+### Key Points
+
+- User requirements should be easy for customers and end users to understand.
+- System requirements are more detailed and may contain technical information.
+- The software requirements document (SRS) is an official statement of what the developers must implement.
+- As far as possible, the document should describe **what the system should do**, not **how it should do it**.
+
+### Requirements and Design
+
+- Ideally:
+    - Requirements describe **what** the system should do.
+    - Design describes **how** the system will do it.
+- In practice, requirements and design are closely related because:
+    - An initial architecture may be needed to organize requirements.
+    - The system may need to interact with existing systems.
+    - Certain architectures may be required to satisfy non-functional or regulatory requirements.
+
+### Ways of Writing System Requirements
+
+- **Natural Language**
+    - Requirements are written as simple numbered sentences.
+    - Easy for users and customers to understand.
+    - Each sentence should express one requirement.
+- **Structured Natural Language**
+    - Uses a standard template or form.
+    - Makes requirements more organized and reduces ambiguity.
+- **Design Description Language**
+    - Uses a language similar to programming languages but at a higher level.
+    - Useful for interface specifications but rarely used.
+- **Graphical Notations**
+    - Uses diagrams along with text.
+    - Common examples include UML use case diagrams and sequence diagrams.
+- **Mathematical Specifications**
+    - Uses mathematical concepts or formal logic.
+    - Provides precise and unambiguous specifications but is difficult for most customers to understand.
+
+### Guidelines for Writing Requirements
+
+- Use a standard format for all requirements.
+- Use consistent language:
+    - **“Shall”** for mandatory requirements.
+    - **“Should”** for desirable requirements.
+- Highlight important parts of the requirement.
+- Avoid unnecessary computer jargon.
+- Include the reason (rationale) for a requirement when needed.
+
+### Problems with Natural Language Specifications
+
+- **Lack of clarity** – precise wording can be difficult.
+- **Requirements confusion** – functional and non-functional requirements may get mixed together.
+- **Requirements amalgamation** – multiple requirements may be combined into one statement, causing ambiguity.
+
+### Form-Based Specification Fields
+
+- Definition of the function or entity.
+- Description of inputs and their source.
+- Description of outputs and their destination.
+- Information required for computation or related entities.
+- Description of the action to be performed.
+- Pre-conditions and post-conditions (if applicable).
+- Side effects of the operation (if any).
+
+---
+
+## Requirements Validation
+
+- **Requirements validation** is the process of checking whether the documented requirements define the **system that the customer actually wants**.
+- It helps detect errors, omissions, inconsistencies, and unrealistic requirements before development.
+- Validation is important because fixing requirement errors after delivery can cost **much more** than fixing implementation errors.
+
+### Requirements Checking
+
+- **Validity Check**
+    - Ensures the requirements support the customer's actual needs.
+    - Verifies that the system provides the required functions.
+- **Consistency Check**
+    - Ensures there are no conflicting or contradictory requirements.
+    - Different parts of the requirements document should agree with each other.
+- **Completeness Check**
+    - Confirms that all required functions and constraints are included.
+    - No important requirement should be missing.
+- **Realism Check**
+    - Verifies that the requirements can be implemented using available technology, budget, and resources.
+- **Verifiability Check**
+    - Ensures each requirement can be tested.
+    - It should be possible to create test cases to prove that the requirement has been satisfied.
+
+### Requirements Validation Techniques
+
+- **Requirements Reviews**
+    - A team systematically examines the requirements document for errors and inconsistencies.
+    - Reviews may be formal or informal.
+    - Both customers and developers should participate.
+- **Prototyping**
+    - An executable model or prototype is shown to users and customers.
+    - Users interact with it to verify whether it meets their actual needs.
+- **Test-Case Generation**
+    - Test cases are developed from the requirements.
+    - Creating tests often reveals ambiguous, incomplete, or incorrect requirements.
+
+### Review Checks
+
+- **Verifiability** – Can the requirement be realistically tested?
+- **Comprehensibility** – Is the requirement easy to understand?
+- **Traceability** – Is the source or origin of the requirement clearly identified?
+- **Adaptability** – Can the requirement be changed without causing major effects on other requirements?
+- Requirements validation improves software quality by ensuring the requirements are **valid, consistent, complete, realistic, and verifiable** before implementation begins.
+
+---
+
+## Requirements Change
+
+- **Requirements change** refers to modifications made to software requirements during or after development.
+- Changes are common because business needs, technology, and user expectations evolve over time.
+- **Requirements management** is the process of managing and controlling these changing requirements throughout requirements engineering and system development.
+
+### Why Requirements Change
+
+- **Business and technical environments change**
+    - New hardware or software may be introduced.
+    - The system may need to interface with other systems.
+    - Business priorities may change.
+    - New laws or regulations may require system updates.
+- **Customers and end users have different needs**
+    - The people paying for the system are often different from those using it.
+    - Organizational or budget constraints may conflict with user expectations.
+    - After deployment, new features may be needed to satisfy users.
+- **Large systems have diverse users**
+    - Different user groups may have conflicting requirements and priorities.
+    - The final requirements are often a compromise and may need revision after practical use.
+
+### Requirements Management
+
+- Manages changing requirements during development and after deployment.
+- Keeps track of individual requirements and their relationships.
+- Assesses the impact of proposed changes before implementation.
+- Establishes a formal process for proposing, evaluating, and recording changes.
+
+### Requirements Management Planning
+
+- **Requirements Identification**
+    - Each requirement should have a unique identifier.
+    - Enables cross-referencing and traceability.
+- **Change Management Process**
+    - Defines how requirement changes are proposed, evaluated, and approved.
+    - Assesses the cost and impact of changes.
+- **Traceability Policies**
+    - Define relationships between requirements and between requirements and system design.
+    - Help analyze the effects of modifications.
+- **Tool Support**
+    - Specialized tools, databases, or spreadsheets may be used to store and manage requirements and changes.
+
+### Requirements Change Management Process
+
+- **Problem Analysis and Change Specification**
+    - A requirement problem or change request is identified.
+    - The proposal is analyzed to check its validity.
+    - The requester may refine or withdraw the change based on the analysis.
+- **Change Analysis and Costing**
+    - The impact of the proposed change is evaluated.
+    - Traceability information and knowledge of the existing system are used to estimate cost and consequences.
+    - A decision is made on whether to accept the change.
+- **Change Implementation**
+    - The requirements document is updated.
+    - If necessary, the system design and implementation are also modified.
+    - The requirements document should be organized so changes can be made easily without extensive rewriting.
+
+---
+
+## System Modeling
+
+- **System modeling** is the process of developing **abstract models** of a system, with each model presenting a different view or perspective of that system.
+- It usually represents the system using **graphical notations**, most commonly based on the **Unified Modeling Language (UML)**.
+- System models help analysts understand system functionality and communicate ideas with customers and developers.
+- Models are used during:
+    - Requirements engineering to derive requirements.
+    - System design to describe the system to developers.
+    - After implementation to document the system’s structure and operation.
+
+### Benefits of System Modeling
+
+- Simplifies understanding of complex systems.
+- Eases project management tasks.
+- Provides complete views of the system as well as detailed views of subsystems.
+- Clarifies structures and relationships between components.
+- Offers a communication framework for ideas within and between teams.
+- Helps generate new ideas and design possibilities.
+- Supports quality assurance and testing.
+- Is generally platform independent.
+
+### Existing and Planned System Models
+
+- **Models of existing systems**
+    - Help understand current functionality.
+    - Identify strengths and weaknesses.
+    - Serve as a basis for defining requirements for a new system.
+- **Models of new systems**
+    - Help explain proposed requirements to stakeholders.
+    - Support discussion of design proposals.
+    - Document the system for implementation.
+    - In model-driven engineering, they may be used to generate complete or partial implementations.
+
+### System Perspectives (Types of Models)
+
+- **External Perspective**
+    - Models the system’s context or environment.
+    - Represented using **context models**.
+- **Interaction Perspective**
+    - Models interactions between the system and its environment or internal components.
+    - Represented using **use case diagrams** and **sequence diagrams**.
+- **Structural Perspective**
+    - Models the organization of the system and relationships between its components.
+    - Represented using **class diagrams**.
+- **Behavioral Perspective**
+    - Models the dynamic behavior of the system and its response to events.
+    - Represented using **activity diagrams** and **state diagrams**.
+
+### UML Diagram Types
+
+- **Activity Diagram**
+    - Shows activities involved in a process or data processing.
+- **Use Case Diagram**
+    - Shows interactions between external actors and the system.
+- **Sequence Diagram**
+    - Shows the sequence of interactions between actors and system components.
+- **Class Diagram**
+    - Shows object classes and the associations between them.
+- **State Diagram**
+    - Shows how the system responds to internal and external events by moving between states.
+
+### Use of Graphical Models
+
+- **For discussion**
+    - Used to facilitate discussions about existing or proposed systems.
+    - Models may be incomplete or simplified.
+- **For documentation**
+    - Used to document existing systems accurately, though not necessarily completely.
+- **For implementation**
+    - Used as detailed system descriptions from which implementations may be generated.
+    - Such models should be both correct and complete.
+
+---
 
 ## Context Models
 
-- Illustrate the operational context of a system — what lies outside system boundaries
-- Social and organisational concerns affect boundary decisions
-- **Architectural models** show the system and its relationship with other systems
+- **Context models** are used to illustrate the **operational context** of a system.
+- They show **what lies outside the system boundaries** and how the system relates to its environment.
+- They help determine what functionality belongs inside the system and what is provided by external systems.
 
 ### System Boundaries
 
-- Define what is inside and outside the system
-- Show other systems that are used or depend on the system being developed
-- Position of boundary profoundly affects system requirements
-- Defining a system boundary is a **political judgment** — pressures to increase/decrease influence of different parts of an organisation
+- System boundaries define **what is inside** and **what is outside** the system.
+- They show other systems that:
+    - Interact with the system.
+    - Depend on the system.
+    - Are used by the system being developed.
+- The position of the system boundary has a significant effect on system requirements.
+- Deciding system boundaries may involve social, organizational, and political considerations.
+- Different departments may try to increase or reduce their influence or workload by changing the system boundary.
 
-### The Context of the Mentcare System
+### Purpose of Context Models
 
-- The Mentcare system sits within a broader health care environment
-- Interacts with: patient records system, hospital administration, pharmacy systems, etc.
+- Clarify the environment in which the system operates.
+- Identify external systems connected to the system.
+- Help stakeholders understand system scope.
+- Detect overlaps with existing systems and decide where new functionality should be implemented.
+- Support early requirements analysis and reduce development cost and effort.
+
+### Architectural Models
+
+- Context models are often represented using **architectural models**.
+- These models show the system and its relationships with other external systems.
 
 ### Process Perspective
 
-- Context models only show other systems, not how the system is used in that environment
-- **Process models** reveal how the system is used in broader business processes
-- UML activity diagrams are used to define business process models
-- Example: **Process model of involuntary detention** (Mentcare) — activity diagram showing steps from assessment through detention
+- Context models show **which external systems exist**, but **do not show how the system is used** within business processes.
+- To model business processes, **process models** are used.
+- **UML Activity Diagrams** can be used to represent these business process models.
+
+### Mentcare System Example
+
+- The **Mentcare System** interacts with several external systems in its environment, including:
+    - Appointment system
+    - General patient record system
+    - Management reporting system
+    - Hospital bed allocation system
+    - Statistics/research system
+- The context model shows these connections and data-sharing relationships without describing their internal operations.
+
+---
 
 ## Interaction Models
 
-- **User interaction** — helps identify user requirements
-- **System-to-system interaction** — highlights communication problems
-- **Component interaction** — assesses if proposed structure delivers required performance and dependability
-- Modelled using **use case diagrams** and **sequence diagrams**
+- **Interaction models** describe how a system interacts with:
+    - External users (actors).
+    - Other systems.
+    - Internal system components.
+- They help in understanding communication between different parts of the system.
+- **Use case diagrams** and **sequence diagrams** are commonly used for interaction modeling.
+
+### Importance of Interaction Models
+
+- Help identify **user requirements** by modeling user interactions with the system.
+- Show **system-to-system interactions**, highlighting possible communication issues.
+- Show **component interactions**, helping assess whether the proposed design can meet performance and dependability requirements.
 
 ### Use Case Modeling
 
-- Originally developed to support requirements elicitation, now part of UML
-- Each use case represents a discrete task involving external interaction with a system
-- **Actors** may be people or other systems
-- Represented diagrammatically (overview) and textually (detailed)
-
-#### Transfer-Data Use Case (Mentcare System)
-
-**MHC-PMS: Transfer data**
-
-| Field | Value |
-|---|---|
-| **Actors** | Medical receptionist, patient records system (PRS) |
-| **Description** | A receptionist may transfer data from the Mentcare system to a general patient record database maintained by health authority |
-| **Data** | Updated personal information (address, phone number) or summary of patient's diagnosis and treatment |
-| **Stimulus** | User command issued by medical receptionist |
-| **Response** | Confirmation that PRS has been updated |
-| **Comments** | Receptionist must have appropriate security permissions to access patient info and PRS |
-
-#### Use Cases Involving Medical Receptionist (Mentcare)
-
-- Includes: Transfer data, View patient information, Manage appointments, etc.
+- Use cases were originally developed to support **requirements elicitation** and are now part of UML.
+- Each use case represents a **specific task or interaction** between an external actor and the system.
+- Actors can be:
+    - People (users).
+    - Other software systems.
+- Use cases provide:
+    - A high-level graphical overview.
+    - A detailed textual description of the interaction.
+- A complete set of use cases should cover all major interactions with the system.
 
 ### Sequence Diagrams
 
-- Part of UML; model interactions between actors and objects within a system
-- Show the sequence of interactions during a particular use case
-- Objects and actors listed along the top with a dotted line drawn vertically
-- Interactions between objects indicated by annotated arrows
+- Sequence diagrams are UML diagrams used to model interactions between actors and system objects.
+- They show the **order (sequence)** in which messages or actions occur during a particular use case.
+- Actors and objects are shown at the top of the diagram with vertical lifelines.
+- Interactions are represented by arrows exchanged between these lifelines.
+- They provide more detail than use case diagrams by illustrating the flow of events step by step.
 
-#### Sequence Diagram for View Patient Information
+### Benefits of Interaction Models
 
-- Actor: Medical receptionist
-- Objects: User interface, Patient record, Database
-- Steps: Receptionist requests patient info → UI sends query → Database retrieves → Response displayed
+- Improve understanding of how users and systems communicate.
+- Help discover missing or incorrect requirements.
+- Make it easier to analyze system behavior before implementation.
+- Support the design and validation of software architecture.
 
-#### Sequence Diagram for Transfer Data
+### UML Diagrams Used for Interaction Modeling
 
-- Actor: Medical receptionist
-- Objects: UI, Local data, PRS (Patient Records System)
-- Steps: Receptionist initiates transfer → system reads local data → sends to PRS → PRS confirms
+- **Use Case Diagram**
+    - Shows interactions between external actors and the system.
+    - Gives an overview of system functionality from the user's perspective.
+- **Sequence Diagram**
+    - Shows the chronological sequence of interactions between actors and system components.
+    - Describes message flow during a specific scenario or use case.
+
+---
 
 ## Structural Models
 
-- Display organisation in terms of components and their relationships
-- **Static models** — structure of system design
-- **Dynamic models** — organisation during execution
-- Created when discussing and designing system architecture
+- **Structural models** show the **organization of a software system**, its components, and the relationships between those components.
+- They help in understanding and designing the **system architecture**.
+- Structural models can be:
+    - **Static models** – show the structure of the system design.
+    - **Dynamic models** – show the organization of the system while it is executing.
+
+### Purpose of Structural Models
+
+- Represent the overall organization of a system.
+- Show how different components are related.
+- Help in discussing and designing the system architecture.
+- Provide a clear view of the system’s static structure.
 
 ### Class Diagrams
 
-- Used in object-oriented system modeling to show classes and associations
-- An **object class** is a general definition of one kind of system object
-- An **association** is a link between classes indicating some relationship
-- During early stages, objects represent real-world entities (patient, prescription, doctor)
+- **Class diagrams** are the main UML diagrams used for structural modeling.
+- They show:
+    - The classes in a system.
+    - The associations (relationships) between those classes.
+- Used mainly when developing **object-oriented systems**.
 
-#### UML Classes and Association
+### Object Classes
 
-- Represented as boxes (classes) with lines (associations) between them
-- Associations labelled with names (e.g. "prescribes", "undergoes")
-- Multiplicity indicators (1, *, 0..1) show how many objects participate
+- An **object class** is a general definition or blueprint for a type of object in the system.
+- During early software development, classes often represent real-world entities such as:
+    - Patient
+    - Doctor
+    - Prescription
+    - Consultation
 
-#### Classes and Associations in the MHC-PMS (Mentcare)
+### Associations
 
-- **Patient** class — attributes: name, address, date of birth, registration date
-- **Doctor** class — attributes: name, employee number, speciality
-- **Consultation** class — links Patient and Doctor with date, time, notes
-- **Prescription** class — links Consultation with drug, dosage, quantity
-- **Treatment** class — describes treatment plan for a patient
-
-#### The Consultation Class
-
-- Central class connecting patient, doctor, date, and treatment details
-- Attributes: consultationDate, consultationTime, notes, patientID, doctorID
-- Operations (methods): getPatientHistory, prescribeDrug, recordNotes
+- An **association** is a relationship or link between two or more classes.
+- It indicates that objects of one class are connected to or interact with objects of another class.
 
 ### Generalization
 
-- Everyday technique used to manage complexity
-- Instead of learning detailed characteristics of every entity, place them in more general classes
-- Allows inference that different members of a class have common characteristics
+- Generalization represents an **inheritance relationship** between classes.
+- A more general class (superclass) can have one or more specialized classes (subclasses).
+- Subclasses inherit the attributes and behavior of the superclass while adding their own specific features.
 
-#### Generalization in System Modeling
+### Benefits of Structural Models
 
-- Examine classes for scope of generalization — if changes proposed, you don't need to check all classes
-- In object-oriented languages (Java), implemented using **class inheritance**
-- **Superclasses** (higher-level) define attributes and operations inherited by **subclasses** (lower-level)
-- Subclasses add more specific attributes and operations
-- Example: **HealthProfessional** superclass with **Doctor**, **Nurse**, **Receptionist** subclasses
+- Provide a clear picture of system organization.
+- Help developers understand relationships among system components.
+- Support software architecture and object-oriented design.
+- Improve communication among designers and stakeholders.
 
-### Aggregation Models
+---
 
-- Show how classes that are collections are composed of other classes
-- Similar to **part-of** relationships in semantic data models
-- Example: A **Clinic** aggregates **ConsultationRoom**, **WaitingArea**, **ReceptionDesk**
+## Behavioural Models
 
-## Behavioral Models
-
-- Models of dynamic behaviour as the system executes
-- Show what happens (or is supposed to happen) when a system responds to a stimulus
+- **Behavioral models** describe the **dynamic behavior** of a system while it is executing.
+- They show how the system behaves or responds when it receives a stimulus from its environment.
+- They help understand how the system processes data and reacts to events.
 
 ### Types of Stimuli
 
-- **Data** — some data arrives that has to be processed by the system
-- **Events** — some event happens that triggers system processing (may have associated data)
+- **Data-driven stimulus**
+    - Data arrives that must be processed by the system.
+    - The system performs operations based on the input data.
+- **Event-driven stimulus**
+    - An event triggers system processing.
+    - Events may or may not have associated data.
 
-### Data-driven Modeling
+### Data-Driven Modeling
 
-- Many business systems are data-processing systems driven by data input
-- Controlled by data input with relatively little external event processing
-- Show sequence of actions for processing input data and generating output
-- Particularly useful during requirements analysis for end-to-end processing
+- Used mainly for business systems that process input data.
+- The system’s behavior is controlled primarily by incoming data.
+- Data-driven models show:
+    - The sequence of processing steps.
+    - How input data is transformed into output.
+- They are useful during requirements analysis because they illustrate end-to-end processing.
 
-#### Example: Activity Model of the Insulin Pump's Operation
+### Activity Diagrams
 
-- Blood sugar sensor reading → compute required insulin → check safety limits → deliver insulin → update display → log data
+- **UML Activity Diagrams** are commonly used for behavioral modeling.
+- They represent the flow of activities or operations in a process.
+- Each activity corresponds to one step in the processing sequence.
+- They show:
+    - The order of execution of activities.
+    - Decision points and alternative paths.
+    - The overall workflow of a process.
 
-#### Example: Order Processing
+### State Diagrams
 
-- Receive order → validate → check inventory → calculate price → process payment → confirm → dispatch
+- **State diagrams** model how a system responds to internal and external events.
+- They show:
+    - Different states of the system.
+    - Transitions between states.
+    - Events that trigger those transitions.
+- Useful for systems whose behavior depends on their current state.
 
-### Event-driven Modeling
+### Benefits of Behavioral Models
 
-- Real-time systems are often event-driven with minimal data processing
-- Example: landline phone switching system responds to events like **receiver off hook** by generating dial tone
-- Shows how a system responds to external and internal events
-- Based on assumption that a system has a finite number of states
-- Events (stimuli) may cause a transition from one state to another
+- Describe how a system behaves during execution.
+- Help understand data processing and event handling.
+- Support requirements analysis and system design.
+- Make it easier to visualize workflows and dynamic system behavior.
+- Help identify missing or incorrect behavior before implementation.
 
-### State Machine Models
+---
 
-- Model system behaviour in response to external and internal events
-- Often used for modelling real-time systems
-- States as **nodes**, events as **arcs** between nodes
-- When an event occurs, the system moves from one state to another
-- **Statecharts** are part of UML
+## Model-Driven Architecture
 
-#### Example: Microwave Oven States
+- **Model-Driven Architecture (MDA)** is a software development approach in which a system is represented as a set of models that can be automatically transformed into executable code.
+- It is based on **Model-Driven Engineering (MDE)**, where models are the primary development artifacts instead of source code.
+- The goal is to separate the system’s functionality from platform-specific implementation details.
 
-| State | Description |
-|---|---|
-| **Waiting** | Oven waiting for input; display shows current time |
-| **Half power** | Power set to 300 watts; display shows "Half power" |
-| **Full power** | Power set to 600 watts; display shows "Full power" |
-| **Set time** | Cooking time set to user's input; display shows selected time |
-| **Disabled** | Operation disabled for safety; interior light on; display shows "Not ready" |
-| **Enabled** | Operation enabled; interior light off; display shows "Ready to cook" |
-| **Operation** | Oven in operation; interior light on; timer countdown; at completion, buzzer for 5 seconds, light on, display shows "Cooking complete" |
+### Basic Idea
 
-#### Microwave Oven Stimuli
+- Create a high-level model of the system.
+- Keep the model independent of implementation technology.
+- Transform the model into one or more platform-specific models.
+- Generate complete or partial system implementations from these models.
 
-| Stimulus | Description |
-|---|---|
-| **Half power** | User pressed half-power button |
-| **Full power** | User pressed full-power button |
-| **Timer** | User pressed one of the timer buttons |
-| **Number** | User pressed a numeric key |
-| **Door open** | Oven door switch is not closed |
-| **Door closed** | Oven door switch is closed |
-| **Start** | User pressed Start button |
-| **Cancel** | User pressed Cancel button |
+### Advantages
 
-## Model-Driven Engineering (MDE)
+- Promotes platform independence.
+- Improves reuse of system models across different technologies.
+- Makes it easier to generate implementations for multiple platforms.
+- Helps maintain consistency between design and implementation.
+- Reduces manual coding effort through automated code generation.
 
-- Approach where **models** (not programs) are the principal outputs of development
-- Programs that execute on hardware/software platform are generated automatically from models
-- Raises the level of abstraction — engineers no longer concerned with programming language details or platform specifics
+### Limitations
 
-### Usage of MDE
+- Requires specialized tool support to transform models between different levels.
+- Suitable tools may not always be available and may need customization.
+- Organizations may hesitate to depend on specialized tools, especially for long-lived systems.
+- The abstractions useful for design discussions may not be appropriate for direct implementation.
+- For many complex systems, challenges such as requirements engineering, security, dependability, integration with legacy systems, and testing are often more significant than coding.
+- The benefits of platform independence are greatest for large, long-life systems.
+- For smaller software products and information systems, the cost of adopting MDA may outweigh its benefits.
+- The popularity of agile development has reduced attention toward model-driven approaches.
 
-- Still at an early stage of development; unclear if it will significantly affect practice
-- **Pros:**
-  - Systems considered at higher levels of abstraction
-  - Automatic code generation makes it cheaper to adapt systems to new platforms
-- **Cons:**
-  - Models for abstraction may not be right for implementation
-  - Savings from code generation may be outweighed by costs of developing translators for new platforms
+### Key Points
 
-### Model-Driven Architecture (MDA)
+- MDA represents software as a collection of models rather than focusing directly on source code.
+- Models can be automatically transformed into executable implementations.
+- It emphasizes platform-independent design followed by platform-specific transformation.
+- It is most beneficial for large and long-term software systems where reuse and portability are important.
 
-- Precursor of more general MDE
-- Model-focused approach using a subset of UML models
-- Models at different levels of abstraction created; from a high-level platform-independent model, a working program can (in principle) be generated without manual intervention
+---
 
-### Types of Model in MDA
+## Update and Retrieve Transactions for Mentcare System
 
-- **Computation Independent Model (CIM)** — models important domain abstractions; sometimes called **domain models**
-- **Platform Independent Model (PIM)** — models operation of the system without reference to implementation; uses UML to show static structure and event responses
-- **Platform Specific Models (PSM)** — transformations of the PIM for each application platform; may have layers adding more detail
+### Update Transaction
 
-### MDA Transformations
+![image.png](image.png)
 
-- Transformations are applied to convert CIM → PIM → PSM → code
-- May require specialised tools for each level of transformation
+**Sequence:**
 
-### Multiple Platform-Specific Models
+- Medical Receptionist logs in.
+- Sends `updateInfo()` to `PatientInfo`.
+- `PatientInfo` sends `updatePRS(UID)` to `Mentcare-DB`.
+- `Mentcare-DB` requests authorization using `authorize(TF, UID)`.
+- Authorization system returns the result.
+- `Mentcare-DB` updates the patient record in `PRS` using `update(PID)`.
+- `PRS` returns `update OK`.
+- `Mentcare-DB` sends `Message(OK)` to `PatientInfo`.
+- `PatientInfo` confirms the update to the Medical Receptionist.
 
-- A single PIM can generate multiple PSMs for different platforms (Java, .NET, etc.)
-- Each PSM adds platform-specific detail
+### Retrieve Transaction
 
-### Agile Methods and MDA
+![image.png](image%201.png)
 
-- MDA claims to support iterative development for agile methods
-- Extensive up-front modelling contradicts agile manifesto principles
-- However, if transformations are fully automated and code generated from PIM, MDA could work in agile — no separate coding required
+**Sequence:**
 
-### Adoption Limitations of MDA/MDE
+- Medical Receptionist requests `ViewInfo(PID)`.
+- `PatientInfo` sends `report(info, PID, UID)` to `Mentcare-DB`.
+- `Mentcare-DB` verifies access with the Authorization System.
+- After successful authorization, the patient information is retrieved.
+- `Mentcare-DB` sends the report to `PatientInfo`.
+- `PatientInfo` displays the patient information to the Medical Receptionist.
 
-- Specialised tool support required to convert models between levels
-- Limited tool availability; organisations may require adaptation and customisation
-- Companies reluctant to develop their own tools or rely on small vendors for long-lifetime systems
-- Abstractions useful for discussion may not be the right abstractions for implementation
-- For most complex systems, implementation is not the major problem — RE, security, dependability, integration with legacy systems, and testing are more significant
-- Platform-independence arguments only valid for large, long-lifetime systems
-- For software products and information systems, MDA savings likely outweighed by introduction and tooling costs
-- Widespread adoption of agile methods has diverted attention from model-driven approaches
+---
+
+## Activity Diagram for Insulin Pump
+
+- The **Insulin Pump Control System** is a medical embedded system that automatically monitors a diabetic patient's blood sugar level and delivers the required amount of insulin.
+- Its main purpose is to maintain normal blood glucose levels without manual intervention.
+
+### Activity Diagram
+
+- **Start**
+    - The insulin pump system begins its operation.
+- **Measure Blood Sugar**
+    - A **microsensor** continuously measures a blood parameter related to the patient's sugar level.
+- **Process Sensor Data**
+    - The collected sensor readings are processed and analyzed by the controller.
+- **Calculate Insulin Dose**
+    - The controller calculates the correct amount of insulin required based on:
+        - Current blood sugar level.
+        - Previous insulin injections.
+- **Generate Control Commands**
+    - The system generates commands to operate the insulin pump according to the calculated dosage.
+- **Deliver Insulin**
+    - The pump injects the required amount of insulin into the patient's body.
+- **Record Dosage Information**
+    - The system records the insulin dose delivered for monitoring and safety purposes.
+- **Repeat the Process**
+    - The monitoring and delivery cycle continues continuously to maintain proper blood glucose levels.
+- **End**
+    - The process continues in a loop while the system is operational.
+
+![image.png](image%202.png)
+
+---
